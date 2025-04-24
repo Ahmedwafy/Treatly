@@ -1,0 +1,79 @@
+$btn-color: #2d8ff2;
+$gtn-hover-color: #2d8ff2;
+// Signup and Login Form Styles
+.auth {
+  max-width: 400px;
+  margin: auto;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  background-color: #2c8ff229;
+  background-image: linear-gradient(
+    to top left,
+    rgba(14, 35, 55, 0.619),
+    rgba(127, 212, 255, 0.093)
+  );
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: wheat;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    input {
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+
+      &:focus {
+        border-color: #2d8ff2;
+      }
+    }
+
+    button {
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+  }
+
+  .note {
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+
+    a {
+      text-decoration: none;
+      color: wheat;
+
+      &:hover {
+        text-decoration: underline;
+        color: wheat;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .auth {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: #071217ba;
+  }
+}

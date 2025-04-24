@@ -1,0 +1,37 @@
+// app/api/bookings/cancel/[bookingId]/route.ts
+
+// use this api to cancel a booking by changing its status
+// to "cancelled" in the database.
+
+import { NextRequest, NextResponse } from "next/server";
+import Booking from "@/lib/models/Booking";
+import connectDb from "@/lib/db";
+
+export async function POST(
+  req: NextRequest,
+  { params }: { params: { bookingId: string } }
+) {
+  try {
+    await connectDb();
+
+    const booking = await Booking.findById(params.bookingId);
+    if (!booking) {
+      return NextResponse.json(
+        { message: "Booking not found" },
+        { status: 404 }
+      );
+    }
+
+    // change state to "cancelled"
+    booking.status = "cancelled";
+    await booking.save();
+
+    return NextResponse.json({ message: "Booking cancelled successfully" });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { message: "Something went wrong" },
+      { status: 500 }
+    );
+  }
+}

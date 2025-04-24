@@ -1,0 +1,129 @@
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+
+  .container {
+    padding: 0;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: 8px;
+    margin: auto;
+    border-radius: 100px;
+    transition: all 0.3s ease-in-out;
+
+    .logo {
+      display: flex;
+      justify-content: start;
+      width: 300px;
+      text-decoration: none;
+      gap: 10px;
+      border-radius: 100px;
+
+      .treatly {
+        font-size: 30px;
+        text-align: center;
+        margin: auto 0;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+      }
+    }
+
+    .list {
+      display: flex;
+      justify-content: end;
+      gap: 10px;
+      padding: 0 20px 0 0;
+
+      a {
+        margin: auto 0;
+        text-decoration: none;
+        padding: 1rem;
+        border-radius: 50px;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.06);
+        background-color: rgba(20, 20, 20, 0.5);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+        transition: all 0.3s ease;
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+
+    .menuToggle {
+      display: none;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: #ffb03d;
+      cursor: pointer;
+    }
+    .logoutBtn {
+      border: none;
+      margin: auto 0;
+      text-decoration: none;
+      background-color: #deebf150;
+      padding: 1rem;
+      border-radius: 50px;
+      color: #123459;
+      &:hover {
+        color: #9b0013;
+      }
+    }
+
+    // Mobile styles
+    @media (max-width: 768px) {
+      .list {
+        position: absolute;
+        top: 80px;
+        right: 20px;
+        background: #051321;
+        flex-direction: column;
+        gap: 10px;
+        padding: 1rem;
+        border-radius: 12px;
+        border: 1px solid #ff943d;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        display: none;
+        z-index: 99999;
+        &.open {
+          display: flex;
+        }
+        a {
+          &:hover {
+            color: #ff943d;
+          }
+        }
+      }
+
+      .menuToggle {
+        display: block;
+      }
+    }
+  }
+  .activeLink {
+    color: #f97316; // orange أو أي لون يعجبك
+    font-weight: bold;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #f97316;
+    }
+  }
+  a {
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #2d90f2;
+    }
+  }
+}

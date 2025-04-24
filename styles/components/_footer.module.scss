@@ -1,0 +1,94 @@
+// styles/components/_footer.scss
+.footer {
+  background-color: #06202b;
+  color: wheat;
+  position: relative;
+  padding-bottom: 5px;
+  // background-color: #ff953d;
+
+  .footerContainer {
+    border-radius: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .footerLinks {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      padding: 0;
+
+      li a {
+        text-decoration: none;
+        transition: color 0.3s;
+        color: wheat;
+      }
+    }
+
+    .footerSocial {
+      display: flex;
+      gap: 15px;
+
+      a {
+        color: wheat;
+        font-size: 1.4rem;
+        transition: transform 0.3s;
+
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+
+  .footerCopyright {
+    text-align: center;
+    font-size: 0.9rem;
+    padding-top: 10px;
+  }
+}
+@media (max-width: 768px) {
+  .footer {
+    padding: 30px 15px 10px;
+    border-radius: 80px;
+
+    .footerContainer {
+      gap: 15px;
+
+      .footerLinks {
+        align-items: center;
+        gap: 10px;
+
+        li a {
+          font-size: 1rem;
+        }
+      }
+
+      .footerSocial {
+        justify-content: center;
+        a {
+          font-size: 1.2rem;
+        }
+      }
+
+      .footerLogo {
+        font-size: 1.5rem;
+      }
+    }
+
+    .footerCopyright {
+      font-size: 0.8rem;
+    }
+  }
+}
+@media (max-width: 425px) {
+  .footerLinks {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    li a {
+      font-size: 1rem;
+    }
+  }
+}
