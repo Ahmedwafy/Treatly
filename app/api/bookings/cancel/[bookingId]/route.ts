@@ -1,12 +1,10 @@
 // app/api/bookings/cancel/[bookingId]/route.ts
 
-// use this api to cancel a booking by changing its status
-// to "cancelled" in the database.
-
 import { NextRequest, NextResponse } from "next/server";
 import Booking from "@/lib/models/Booking";
 import connectDb from "@/lib/db";
 
+// @ts-expect-error: Ignoring the implicit any issue for context
 export async function POST(req: NextRequest, context) {
   const { bookingId } = context.params;
 

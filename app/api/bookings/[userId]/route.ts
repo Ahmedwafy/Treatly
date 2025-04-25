@@ -1,7 +1,10 @@
+// app/api/bookings/[userId]/route.ts
+
 import { NextRequest, NextResponse } from "next/server";
 import connectDb from "@/lib/db";
 import Booking from "@/lib/models/Booking";
 
+// @ts-expect-error: Ignoring the implicit any issue for context
 export async function GET(req: NextRequest, context) {
   const { userId } = context.params;
 
