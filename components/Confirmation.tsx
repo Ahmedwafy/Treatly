@@ -5,7 +5,6 @@ import styles from "@/styles/components/_confirmation.module.scss";
 
 export default function BookingConfirmation() {
   const searchParams = useSearchParams();
-
   const doctor = searchParams.get("doctor");
   const speciality = searchParams.get("speciality");
   const date = searchParams.get("date");
