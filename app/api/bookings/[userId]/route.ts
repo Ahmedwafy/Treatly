@@ -1,13 +1,15 @@
-// app/api/bookings/[userId]/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import connectDb from "@/lib/db";
 import Booking from "@/lib/models/Booking";
 
-export async function GET(
-  req: NextRequest,
-  context: { params: { userId: string } }
-) {
-  const { userId } = context.params;
+interface Params {
+  params: {
+    userId: string;
+  };
+}
+
+export async function GET(req: NextRequest, { params }: Params) {
+  const { userId } = params;
 
   if (!userId) {
     return NextResponse.json(
@@ -18,7 +20,7 @@ export async function GET(
 
   try {
     await connectDb();
-    // Check if the userId is a valid ObjectId
+
     const bookings = await Booking.find({ user: userId }).populate(
       "user",
       "name email"
