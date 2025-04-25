@@ -1,21 +1,16 @@
 // app/api/bookings/[userId]/route.ts
-// Show bookings for a specific user
-
 import { NextRequest, NextResponse } from "next/server";
-import connectDb from "@/lib/db"; // تأكد إن ده ملف الاتصال بقاعدة البيانات
-import Booking from "@/lib/models/Booking"; // تأكد إن Booking متعرف ومتصدّر بشكل سليم
+import connectDb from "@/lib/db";
+import Booking from "@/lib/models/Booking";
 
-type Params = {
-  params: {
-    userId: string;
-  };
-};
-
-export async function GET(req: NextRequest, context: Params) {
-  const { userId } = context.params;
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { userId: string } }
+) {
+  const { userId } = params;
 
   try {
-    await connectDb(); // الاتصال بقاعدة البيانات
+    await connectDb();
 
     const bookings = await Booking.find({ user: userId }).populate(
       "user",
