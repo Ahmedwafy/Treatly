@@ -7,14 +7,13 @@ import { NextRequest, NextResponse } from "next/server";
 import Booking from "@/lib/models/Booking";
 import connectDb from "@/lib/db";
 
-export async function POST(
-  req: NextRequest,
-  { params }: { params: { bookingId: string } }
-) {
+export async function POST(req: NextRequest, context) {
+  const { bookingId } = context.params;
+
   try {
     await connectDb();
 
-    const booking = await Booking.findById(params.bookingId);
+    const booking = await Booking.findById(bookingId);
     if (!booking) {
       return NextResponse.json(
         { message: "Booking not found" },
