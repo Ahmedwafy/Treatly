@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import RouteLoader from "@/components/RouteLoader";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-// import Image from "next/image";
 import { Roboto } from "next/font/google";
 import "../styles/layout/globals.scss";
 import "react-datepicker/dist/react-datepicker.css";
@@ -18,6 +17,9 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "Treatly",
   description: "Your clinic booking platform",
+  icons: {
+    icon: "/app/icon.ico",
+  },
 };
 
 export default function RootLayout({
