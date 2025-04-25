@@ -7,10 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Booking from "@/lib/models/Booking";
 import connectDb from "@/lib/db";
 
-export async function POST(
-  req: NextRequest,
-  context: { params: { bookingId: string } }
-) {
+export async function POST(req: NextRequest, context) {
   const { bookingId } = context.params;
 
   try {
