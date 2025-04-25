@@ -7,7 +7,10 @@ import { NextRequest, NextResponse } from "next/server";
 import Booking from "@/lib/models/Booking";
 import connectDb from "@/lib/db";
 
-export async function POST(req: NextRequest, context) {
+export async function POST(
+  req: NextRequest,
+  context: { params: { bookingId: string } }
+) {
   const { bookingId } = context.params;
 
   try {
@@ -21,13 +24,13 @@ export async function POST(req: NextRequest, context) {
       );
     }
 
-    // change state to "cancelled"
+    // change status to "cancelled"
     booking.status = "cancelled";
     await booking.save();
 
     return NextResponse.json({ message: "Booking cancelled successfully" });
   } catch (error) {
-    console.error(error);
+    console.error("Error cancelling booking:", error);
     return NextResponse.json(
       { message: "Something went wrong" },
       { status: 500 }
