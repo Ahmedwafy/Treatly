@@ -3,15 +3,25 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDb from "@/lib/db";
 import Booking from "@/lib/models/Booking";
 
-export async function GET(
-  req: NextRequest,
-  { params }: { params: { userId: string } }
-): Promise<NextResponse> {
-  const userId = params.userId;
+type Context = {
+  params: {
+    userId: string;
+  };
+};
+
+export async function GET(req: NextRequest, context: Context) {
+  const { userId } = context.params;
+
+  if (!userId) {
+    return NextResponse.json(
+      { error: "User ID not provided" },
+      { status: 400 }
+    );
+  }
 
   try {
     await connectDb();
-
+    // Check if the userId is a valid ObjectId
     const bookings = await Booking.find({ user: userId }).populate(
       "user",
       "name email"
@@ -22,7 +32,7 @@ export async function GET(
     const message =
       error instanceof Error
         ? error.message
-        : "An unknown error occurred while fetching bookings.";
+        : "Something went wrong while fetching bookings";
 
     return NextResponse.json({ error: message }, { status: 500 });
   }
