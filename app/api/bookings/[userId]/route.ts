@@ -2,14 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDb from "@/lib/db";
 import Booking from "@/lib/models/Booking";
 
-interface Params {
-  params: {
-    userId: string;
-  };
-}
-
-export async function GET(req: NextRequest, { params }: Params) {
-  const { userId } = params;
+export async function GET(req: NextRequest, context) {
+  const { userId } = context.params;
 
   if (!userId) {
     return NextResponse.json(
