@@ -6,8 +6,8 @@ import Booking from "@/lib/models/Booking";
 export async function GET(
   req: NextRequest,
   { params }: { params: { userId: string } }
-) {
-  const { userId } = params;
+): Promise<NextResponse> {
+  const userId = params.userId;
 
   try {
     await connectDb();
