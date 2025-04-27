@@ -37,6 +37,13 @@ const Navbar = () => {
     fetchProfile();
   }, []);
 
+  const handleMenuClick = (e: React.MouseEvent<HTMLUListElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.tagName === "A") {
+      setMenuOpen(false);
+    }
+  };
+
   return (
     <nav className={styles.navBar}>
       <div className={styles.container}>
@@ -48,18 +55,32 @@ const Navbar = () => {
         <button
           className={styles.menuToggle}
           onClick={() => setMenuOpen((prev) => !prev)}
+          aria-label="Toggle Menu"
         >
           <Menu />
         </button>
 
-        <ul className={`${styles.list} ${menuOpen ? styles.open : ""}`}>
-          <Link href="/about-us">About Us</Link>
-          <Link href="/servicess">Services</Link>
-          <Link href="/contact-us">Contact Us</Link>
+        <ul
+          className={`${styles.list} ${menuOpen ? styles.open : ""}`}
+          onClick={handleMenuClick}
+        >
+          <Link href="/about-us" className={styles.navLink}>
+            About Us
+          </Link>
+          <Link href="/servicess" className={styles.navLink}>
+            Services
+          </Link>
+          <Link href="/contact-us" className={styles.navLink}>
+            Contact Us
+          </Link>
           {user ? (
-            <Link href="/profile">Profile</Link>
+            <Link href="/profile" className={styles.navLink}>
+              Profile
+            </Link>
           ) : (
-            <Link href="/login">Login</Link>
+            <Link href="/login" className={styles.navLink}>
+              Login
+            </Link>
           )}
         </ul>
       </div>
