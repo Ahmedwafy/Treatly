@@ -1,3 +1,4 @@
+// Treatly Login
 // app/components/LoginForm.tsx
 "use client";
 import { useState } from "react";
@@ -21,6 +22,8 @@ const LoginForm = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        // credentials: "include", : المتصفح هيخزن الكوكي أوتوماتيك
+        //  بعد كده هيبعت الكوكي ده معاه عشان السيرفر يتعرف عليك  request وبالتالى اى
         credentials: "include", //  Include cookies in the request
         body: JSON.stringify({ email, password }),
       });

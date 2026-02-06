@@ -1,3 +1,5 @@
+// Treatly
+// RegisterForm.tsx
 "use client";
 
 import { useState } from "react";
@@ -35,12 +37,15 @@ const RegisterForm = () => {
     try {
       const res = await fetch("/api/users", {
         method: "POST",
+
         headers: {
           "Content-Type": "application/json",
         },
+
         body: JSON.stringify(formData),
       });
 
+      // Const data contains the response's message & error from the server
       const data = await res.json();
 
       if (res.ok) {
