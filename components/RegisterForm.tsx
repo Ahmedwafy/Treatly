@@ -4,6 +4,7 @@
 
 import { useState } from "react";
 import styles from "@/styles/components/_auth.module.scss";
+import { useRouter } from "next/navigation";
 
 type FormData = {
   name: string;
@@ -20,6 +21,7 @@ const RegisterForm = () => {
     password: "",
   });
 
+  const router = useRouter();
   const [message, setMessage] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,6 +53,9 @@ const RegisterForm = () => {
       if (res.ok) {
         setMessage("Registered successfully!");
         setFormData({ name: "", phone: "", email: "", password: "" });
+        setTimeout(() => {
+          router.push("/login");
+        }, 1500);
       } else {
         setMessage(data.message || data.error || "Something went wrong.");
       }

@@ -61,6 +61,8 @@ const ProfilePage = () => {
       });
 
       if (res.ok) {
+        // Notify navbar of auth change
+        window.dispatchEvent(new Event("authChange"));
         router.push("/login");
       } else {
         console.error("Logout failed");

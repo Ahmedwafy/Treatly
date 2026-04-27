@@ -15,26 +15,34 @@ const Navbar = () => {
   const [user, setUser] = useState<User | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const res = await fetch("/api/profile", {
-          method: "GET",
-          credentials: "include",
-        });
+  const fetchProfile = async () => {
+    try {
+      const res = await fetch("/api/profile", {
+        method: "GET",
+        credentials: "include",
+      });
 
-        if (res.ok) {
-          const data = await res.json();
-          setUser(data.user);
-        } else {
-          setUser(null);
-        }
-      } catch {
+      if (res.ok) {
+        const data = await res.json();
+        setUser(data.user);
+      } else {
         setUser(null);
       }
+    } catch {
+      setUser(null);
+    }
+  };
+
+  useEffect(() => {
+    fetchProfile();
+
+    // Listen for auth changes
+    const handleAuthChange = () => {
+      fetchProfile();
     };
 
-    fetchProfile();
+    window.addEventListener("authChange", handleAuthChange);
+    return () => window.removeEventListener("authChange", handleAuthChange);
   }, []);
 
   const handleMenuClick = (e: React.MouseEvent<HTMLUListElement>) => {

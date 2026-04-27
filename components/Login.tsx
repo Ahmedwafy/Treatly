@@ -22,9 +22,9 @@ const LoginForm = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        // credentials: "include", : المتصفح هيخزن الكوكي أوتوماتيك
-        //  بعد كده هيبعت الكوكي ده معاه عشان السيرفر يتعرف عليك  request وبالتالى اى
-        credentials: "include", //  Include cookies in the request
+        // credentials: "include", : Browser will include cookies in the request, allowing the server to recognize the user and maintain the session.
+        // This is essential for authentication, as it allows the server to identify the user on subsequent requests after login.
+        credentials: "include",
         body: JSON.stringify({ email, password }),
       });
 
@@ -38,6 +38,9 @@ const LoginForm = () => {
 
       setSuccess("🎉 Logged in successfully!");
       setError("");
+
+      // Notify navbar of auth change
+      window.dispatchEvent(new Event("authChange"));
 
       // Redirect to profile page after successful login
       router.push("/profile");
