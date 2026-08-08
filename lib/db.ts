@@ -1,3 +1,6 @@
+import dns from "dns";
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
+
 import mongoose from "mongoose";
 
 const connectDb = async () => {
@@ -10,7 +13,7 @@ const connectDb = async () => {
     // check if the environment variable is set
     if (!process.env.MONGODB_URI) {
       throw new Error(
-        "MONGODB_URI is not defined in the environment variables"
+        "MONGODB_URI is not defined in the environment variables",
       );
     }
 
