@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "Treatly",
   description: "Your clinic booking platform",
   icons: {
-    icon: "/app/icon.ico",
+    icon: "/app/favicon.ico",
   },
 };
 
